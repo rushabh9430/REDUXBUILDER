@@ -1,7 +1,9 @@
-import React, {  } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import '../App.css'
 function Counter() {
+
+    // Counter 
     const data = useSelector((counter) => counter.CounterReducer.state1)
     const Dispatch = useDispatch()
 
@@ -12,11 +14,16 @@ function Counter() {
     const onClickDecrease = () => {
         Dispatch({type : 'DECREMENT'})
     }
+
+    // Theme Switcher 
+
   return (
-    <div className='my-5 d-flex justify-content-center marginTop_150'>
-        <button className='btn btn-outline-dark py-1 px-5 mx-5' onClick={onClickIncrease}>+</button>
+    <div className='counter'>
+        <div className='my-5 d-flex justify-content-center marginTop_150 '>
+        <button className='btn btn-dark py-1 px-5 mx-5 counter_button' onClick={onClickIncrease}>+</button>
         {data}
-        <button className='btn btn-outline-dark py-1 px-5 mx-5' onClick={onClickDecrease} >-</button>
+        <button className='btn btn-dark py-1 px-5 mx-5 counter_button' onClick={onClickDecrease} >-</button>
+    </div>
     </div>
   )
 }

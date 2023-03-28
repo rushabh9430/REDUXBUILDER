@@ -1,8 +1,11 @@
 import React from "react";
+import { useContext } from "react";
+import { Context } from "../ContextAPI/Them.contextAPI";
 
 function Footer() {
+    const theme = useContext(Context)
   return (
-    <div>
+    <div className={theme}>
       {/* ======= Footer ======= */}
       <footer id="footer">
         <div className="footer-top">
@@ -105,7 +108,8 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="container">
+        <div className="footer-bottom">
+        <div className="container ">
           <div className="copyright">
             © Copyright{" "}
             <strong>
@@ -120,6 +124,7 @@ function Footer() {
             {/* Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ */}
             Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
           </div>
+        </div>
         </div>
       </footer>
       {/* End Footer */}

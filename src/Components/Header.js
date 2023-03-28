@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Context } from "../ContextAPI/Them.contextAPI";
 
 export const Header = () => {
   const location = useLocation();
+  const theme = useContext(Context);
   return (
-    <div>
+    <div className={theme}>
       {/* ======= Header ======= */}
       <header
         id="header"
@@ -38,8 +40,8 @@ export const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link className="nav-link scrollto " to="/portfolio">
-                  Portfolio
+                <Link className="nav-link scrollto " to="/showteam">
+                  ShowTeam
                 </Link>
               </li>
               <li>
@@ -56,9 +58,9 @@ export const Header = () => {
             <i className="bi bi-list mobile-nav-toggle" />
           </nav>
           {/* .navbar */}
-          <a href="#about" className="get-started-btn scrollto">
-            Get Started
-          </a>
+          <Link to="/registration" className="get-started-btn scrollto">
+            Registration
+          </Link>
         </div>
       </header>
       {/* End Header */}

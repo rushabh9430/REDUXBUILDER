@@ -1,0 +1,25 @@
+Authentication — Authentication is about validating your credentials(ઓળખપત્ર) like Username and password to verify your identity.
+
+Authorization — Authorization is the process to determine whether the authenticated user has access
+to the particular resources. It checks your rights to grant you access to resources such as information,
+databases, files, etc.
+
+
+Firebase is a popular Backend as a Service (BaaS) platform offered by Google that provides real-time database, storage, and authentication services. 
+
+Firebase can be used to build complete applications that include backend functionality, without the need to set up custom server infrastructure.
+
+When used in conjunction with React.js, Firebase can help developers create efficient and powerful web applications quickly and easily. Here are a few potential benefits of using Firebase in React.js:
+
+
+Real-time data synchronization: Firebase's real-time database allows developers to sync data across clients in real-time, providing a seamless experience for users.
+
+
+Authentication: Firebase provides multiple authentication methods, including email/password, social media login, and anonymous authentication. This makes it easy to implement secure user authentication in your React.js application.
+
+
+Cloud storage: Firebase offers easy-to-use cloud storage capabilities, making it simple to upload and store data, files, images, and more on the cloud.
+
+
+Serverless infrastructure: Using Firebase removes the need to set
+

@@ -37,7 +37,26 @@
   }
 }
 
-
 .marginTop_150 {
-    margin-top: 150px !important;
+  padding: 150px 0 !important;
+}
+
+.postion_css {
+  position: fixed;
+  z-index: 99999999;
+}
+
+.light header {
+    background-color: #ffc451 !important;
+}
+.light .footer-top{
+    background: #ffc451 !important;
+}
+
+.light nav Link:hover {
+    color : red !important
+}
+
+.margin-150{
+    margin: 150px 0;
 }

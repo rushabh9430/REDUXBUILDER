@@ -1,90 +1,83 @@
-import React from 'react'
+import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Team() {
+  const [firstname, setFirstName] = useState([]);
+  const [lastName, setLastName] = useState([]);
+
+  const Navigate = useNavigate()
+  const OnchangeName = (event) => {
+    setFirstName(event.target.value);
+  };
+  const OnchangeLastName = (event) => {
+    setLastName(event.target.value);
+  };
+
+  const onclickHandler = async() => {
+    const data = {
+        firstname,
+        lastName,
+      };
+      console.info("data" , data)
+
+      const response = await axios({
+
+       method : "POST",
+       url : `${process.env.REACT_APP_BASE_URL}/team`,
+       data : data
+
+      })
+      console.log("res" , response)
+
+    
+      toast.success('😁')
+
+      Navigate('/showteam')
+  }
   return (
     <div>
       {/* ======= Team Section ======= */}
-<section id="team" className="team">
-  <div className="container" data-aos="fade-up">
-    <div className="section-title">
-      <h2>Team</h2>
-      <p>Check our Team</p>
-    </div>
-    <div className="row">
-      <div className="col-lg-3 col-md-6 d-flex align-items-stretch">
-        <div className="member" data-aos="fade-up" data-aos-delay={100}>
-          <div className="member-img">
-            <img src="assets/img/team/team-1.jpg" className="img-fluid" alt />
-            <div className="social">
-              <a href><i className="bi bi-twitter" /></a>
-              <a href><i className="bi bi-facebook" /></a>
-              <a href><i className="bi bi-instagram" /></a>
-              <a href><i className="bi bi-linkedin" /></a>
-            </div>
+      <section id="team" className="team">
+        <div className="container" data-aos="fade-up">
+          <div className="section-title">
+            <h2>Team</h2>
+            <p>Check our Team</p>
           </div>
-          <div className="member-info">
-            <h4>Walter White</h4>
-            <span>Chief Executive Officer</span>
-          </div>
-        </div>
-      </div>
-      <div className="col-lg-3 col-md-6 d-flex align-items-stretch">
-        <div className="member" data-aos="fade-up" data-aos-delay={200}>
-          <div className="member-img">
-            <img src="assets/img/team/team-2.jpg" className="img-fluid" alt />
-            <div className="social">
-              <a href><i className="bi bi-twitter" /></a>
-              <a href><i className="bi bi-facebook" /></a>
-              <a href><i className="bi bi-instagram" /></a>
-              <a href><i className="bi bi-linkedin" /></a>
-            </div>
-          </div>
-          <div className="member-info">
-            <h4>Sarah Jhonson</h4>
-            <span>Product Manager</span>
-          </div>
-        </div>
-      </div>
-      <div className="col-lg-3 col-md-6 d-flex align-items-stretch">
-        <div className="member" data-aos="fade-up" data-aos-delay={300}>
-          <div className="member-img">
-            <img src="assets/img/team/team-3.jpg" className="img-fluid" alt />
-            <div className="social">
-              <a href><i className="bi bi-twitter" /></a>
-              <a href><i className="bi bi-facebook" /></a>
-              <a href><i className="bi bi-instagram" /></a>
-              <a href><i className="bi bi-linkedin" /></a>
-            </div>
-          </div>
-          <div className="member-info">
-            <h4>William Anderson</h4>
-            <span>CTO</span>
-          </div>
-        </div>
-      </div>
-      <div className="col-lg-3 col-md-6 d-flex align-items-stretch">
-        <div className="member" data-aos="fade-up" data-aos-delay={400}>
-          <div className="member-img">
-            <img src="assets/img/team/team-4.jpg" className="img-fluid" alt />
-            <div className="social">
-              <a href><i className="bi bi-twitter" /></a>
-              <a href><i className="bi bi-facebook" /></a>
-              <a href><i className="bi bi-instagram" /></a>
-              <a href><i className="bi bi-linkedin" /></a>
-            </div>
-          </div>
-          <div className="member-info">
-            <h4>Amanda Jepson</h4>
-            <span>Accountant</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>{/* End Team Section */}
 
+          <div className="team_section">
+            <div>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter Your Name"
+                name="firstname"
+                onChange={OnchangeName}
+              />
+              <br />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter Your Pofession"
+                name="lastName"
+                onChange={OnchangeLastName}
+              />
+              <br />
+              <button
+                type="button"
+                onClick={onclickHandler}
+                className="btn btn-warning"
+              >
+                Send Message
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* End Team Section */}
     </div>
-  )
+  );
 }
 
-export default Team
+export default Team;
