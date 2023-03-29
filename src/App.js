@@ -9,11 +9,12 @@ import { Context } from "./ContextAPI/Them.contextAPI";
 import { useState } from "react";
 import ShowTeam from "./Pages/ShowTeam";
 import EditTeam from "./Pages/EditTeam";
-import Patten from "./Pages/Patten";
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Registration from "./Pages/Registration";
+import PrivateRoute from "./Pages/PrivateRoute";
+import Login from "./Pages/Login";
 
 function App() {
   const [theme, setThem] = useState("dark");
@@ -56,6 +57,18 @@ function App() {
             }
           />
           <Route
+            path="/login"
+            element={
+                <Login />
+            }
+          />
+          <Route
+            path="/registration"
+            element={
+                <Registration />
+            }
+          />
+          <Route
             path="/about"
             element={
               <Layout>
@@ -66,9 +79,11 @@ function App() {
           <Route
             path="/team"
             element={
-              <Layout>
-                <Team />
-              </Layout>
+              <PrivateRoute>
+                <Layout>
+                  <Team />
+                </Layout>
+             </PrivateRoute>    
             }
           />
           <Route

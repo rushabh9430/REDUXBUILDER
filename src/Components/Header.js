@@ -1,10 +1,22 @@
 import React, { useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../ContextAPI/Them.contextAPI";
-
 export const Header = () => {
   const location = useLocation();
   const theme = useContext(Context);
+  const navigate = useNavigate()
+
+  const user = localStorage.getItem('user')
+
+  const onclickLoginIn = () => {
+    navigate('/login')
+  }
+
+  const onclickLoginOut = () => {
+    localStorage.removeItem('user')
+    navigate('/login')
+  }
   return (
     <div className={theme}>
       {/* ======= Header ======= */}
@@ -54,10 +66,18 @@ export const Header = () => {
                   Counter
                 </Link>
               </li>
+               
             </ul>
             <i className="bi bi-list mobile-nav-toggle" />
           </nav>
           {/* .navbar */}
+          {!user && <Button className="btn btn-primary buttonForHeader" onClick={onclickLoginIn}>
+                  LogIn
+                </Button> }
+                {user && <Button className="btn btn-primary buttonForHeader" onClick={onclickLoginOut}>
+                  LogOut
+                </Button>
+                }
           <Link to="/registration" className="get-started-btn scrollto">
             Registration
           </Link>

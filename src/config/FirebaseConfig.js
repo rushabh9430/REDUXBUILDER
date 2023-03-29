@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCBLMKwL_0NN9Y7S4k6j76G3dkWIAickXI",
@@ -13,7 +13,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
+const auth = getAuth(app);
 
-export { auth }
+// for Google popup aauthentication ⬇️
+const GoogleProvider = new GoogleAuthProvider();
 
+export { auth, GoogleProvider };

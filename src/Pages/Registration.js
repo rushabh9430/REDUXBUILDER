@@ -1,19 +1,60 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { auth } from "../config/FirebaseConfig";
+import { auth, GoogleProvider } from "../config/FirebaseConfig";
+
 const Registration = () => {
+    const navigate = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   // when you work with firebase you aa lot of the stuff returned promises so you do to need async await or .then .catch ➡️⬇️
   const SignIn = async () => {
     try{
-        await createUserWithEmailAndPassword(auth, email, password);
+        const data = await createUserWithEmailAndPassword(auth, email, password);
+
+        const user = {
+            email : data?.user.email,
+            name : data?.user.displayName,
+            photo : data?.user.photoURL
+        }
+
+        localStorage.setItem('user' , JSON.stringify(user))
+        navigate('/team')
         toast.success('Registration successfully babe')
     }catch(error) {
         toast.error(new Error(error).message)
+        
+    }
+  };
+  const SignInWithGoogle = async () => {
+    try{
+        const data = await signInWithPopup(auth, GoogleProvider);
+        console.log("data++" , data)
+
+        const user = {
+            email : data?.user.email,
+            name : data?.user.displayName,
+            photo : data?.user.photoURL
+        }
+
+        localStorage.setItem('user' , JSON.stringify(user))
+        navigate('/team')
+        toast.success('Sign in With Google')
+    }catch(error) {
+        toast.error(new Error(error).message) 
+        
+    }
+  };
+  const LogOut = async () => {
+    try{
+        await signOut(auth);
+        toast.success('Logout Ho gaya bhai 🤜')
+    }catch(error) {
+        toast.error(new Error(error).message) 
+        
     }
   };
   return (
@@ -45,7 +86,12 @@ const Registration = () => {
             Submit
           </Button>
         </Form>
-      </div>
+        <div className="d-flex justify-content-between mt-5">
+        <button className="btn btn-primary " onClick={SignInWithGoogle}>Sign in with Google </button>
+        <button className="btn btn-primary " onClick={LogOut} >Logout</button>
+      
+        </div>
+       </div>
     </div>
   );
 };
