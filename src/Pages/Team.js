@@ -1,9 +1,12 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { TeamAction } from "../redux/action/Team.Action";
 
 function Team() {
+    const dispatch = useDispatch()
   const [firstname, setFirstName] = useState([]);
   const [lastName, setLastName] = useState([]);
 
@@ -16,23 +19,33 @@ function Team() {
   };
 
   const onclickHandler = async() => {
+//     const data = {
+//         firstname,
+//         lastName,
+//       };
+//       console.info("data" , data)
+
+//       const response = await axios({
+
+//        method : "POST",
+//        url : `${process.env.REACT_APP_BASE_URL}/team`,
+//        data : data
+
+//       })
+//       console.log("res" , response)
+
+    
+//       toast.success('😁')
+
+      Navigate('/showteam')
+//   }
     const data = {
         firstname,
         lastName,
       };
       console.info("data" , data)
 
-      const response = await axios({
-
-       method : "POST",
-       url : `${process.env.REACT_APP_BASE_URL}/team`,
-       data : data
-
-      })
-      console.log("res" , response)
-
-    
-      toast.success('😁')
+      dispatch(TeamAction(data))
 
       Navigate('/showteam')
   }

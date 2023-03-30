@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 function ShowTeam() {
   const [data, setData] = useState([]);
-  const Navigate = useNavigate()
+  const Navigate = useNavigate();
 
   useEffect(() => {
     getdata();
@@ -14,7 +14,7 @@ function ShowTeam() {
   const getdata = async () => {
     const response = await axios({
       method: "GET",
-      url:  `${process.env.REACT_APP_BASE_URL}/team`,
+      url: `${process.env.REACT_APP_BASE_URL}/team`,
     });
     setData(response.data);
   };
@@ -33,7 +33,7 @@ function ShowTeam() {
       });
       getdata();
 
-      toast.error('Team Deleted!')
+      toast.error("Team Deleted!");
     }
   };
   return (
